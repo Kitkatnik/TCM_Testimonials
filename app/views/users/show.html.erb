@@ -1,0 +1,27 @@
+<div class="container">
+  <h1><%= @name %></h1>
+
+  <div class="row well">
+    <div class="col-lg-6">
+      <div class="col-lg-3">
+        <img src="http://placekitten.com/100/100" alt="">
+      </div>
+      <div class="col-lg-9">
+        <a href="#">Website Link</a><br />
+        <img src="http://placekitten.com/20/20" alt=""/> <img src="http://placekitten.com/20/20" alt=""/> <img src="http://placekitten.com/20/20" alt=""/> <img src="http://placekitten.com/20/20" alt=""/> <img src="http://placekitten.com/20/20" alt=""/>
+        <br />
+
+      </div>
+    </div>
+    <div class="col-lg-6">
+      Submit Testimonial<br />
+      <%= render "testimonials/form" %>
+    </div><!-- col-lg-6 -->
+  </div><!-- row -->
+  <div class="row">
+    <%= render "testimonials/testimonial" %>
+    <%= render "testimonials/testimonial" %>
+    <%= render "testimonials/testimonial" %>
+    <%= render "testimonials/testimonial" %>
+  </div>
+</div>

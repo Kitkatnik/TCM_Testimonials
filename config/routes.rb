@@ -1,5 +1,8 @@
 Testimonials::Application.routes.draw do
+  get "users/show"
+  root to: "welcome#index"
   resources :testimonials
+  resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
