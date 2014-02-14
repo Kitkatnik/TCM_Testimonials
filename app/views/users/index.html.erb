@@ -1,0 +1,9 @@
+<div class="container">
+  <h1 class="text-center">Users</h1>
+  <br />
+  <div class="row">
+    <% @users.each do |user| %>
+      <%= render partial: "user", locals: { user: user } %>
+    <% end %>
+  </div>
+</div><!-- container -->

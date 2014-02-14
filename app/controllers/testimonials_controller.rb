@@ -1,4 +1,5 @@
 class TestimonialsController < ApplicationController
+  before_filter :authenticate_user!
   before_action :set_testimonial, only: [:show, :edit, :update, :destroy]
 
   # GET /testimonials
@@ -24,11 +25,11 @@ class TestimonialsController < ApplicationController
   # POST /testimonials
   # POST /testimonials.json
   def create
-    @testimonial = Testimonial.new(testimonial_params)
+    @testimonial = current_user.testimonials.build(testimonial_params)
 
     respond_to do |format|
       if @testimonial.save
-        format.html { redirect_to @testimonial, notice: 'Testimonial was successfully created.' }
+        format.html { redirect_to :back, notice: "Testimonial was successfully created for #{@testimonial.recipient.name}" }
         format.json { render action: 'show', status: :created, location: @testimonial }
       else
         format.html { render action: 'new' }
@@ -69,6 +70,6 @@ class TestimonialsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def testimonial_params
-      params.require(:testimonial).permit(:body)
+      params.require(:testimonial).permit(:body, :recipient_id)
     end
 end

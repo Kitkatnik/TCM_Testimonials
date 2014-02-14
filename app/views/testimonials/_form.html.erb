@@ -12,9 +12,10 @@
   <% end %>
 
   <div class="field">
-    <%= f.text_area :body, class: "form-control", rows: 3 %>
+    <%= f.text_area :body, class: "form-control", "placeholder" => "Write your testimonial here...", rows: 3 %>
   </div>
   <div class="actions">
+    <%= f.hidden_field :recipient_id, value: user_id %>
     <%= f.submit "Submit", class: "btn btn-default" %>
   </div>
 <% end %>

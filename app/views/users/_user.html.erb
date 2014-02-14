@@ -1,0 +1,24 @@
+<div class="col-lg-3">
+  <p class="well text-center">
+    <strong><%= link_to user.name, user_path(user) %></strong><br /> 
+    <small><%= user.received_testimonials.size %> Testimonials Received</small><br />
+    <small><%= user.testimonials.size %> Testimonials Written</small><br /><br />
+    <button class="btn btn-default btn-block" type="button" data-toggle="modal" data-target="#testyModal<%= user.id %>">Leave A Testimonial</button>
+  </p>
+  <div class="modal fade" id="testyModal<%= user.id %>">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Write a Testimonial for <%= user.name %></h4>
+        </div>
+        <div class="modal-body">
+          <%= render partial: "testimonials/form", locals: { user_id: user.id } %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>

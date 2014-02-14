@@ -1,0 +1,14 @@
+<%= form_for([@user, web_link]) do |f| %>
+  <div class="field col-lg-8">
+    <%= f.hidden_field :title, value: site %>
+    <%= f.text_field :url, class: "form-control", placeholder: "#{site} URL" %>
+  </div>
+  <div class="col-lg-4">
+    <% if web_link.new_record? %>
+      <%= f.submit "Add", class: "btn btn-default" %>
+    <% else %>
+      <%= link_to "X", user_web_link_path(@user, web_link), method: :delete %>
+    <% end %>
+  </div>
+  <br /><br />
+<% end %>

@@ -46,3 +46,9 @@ end
 
 gem 'devise'
 
+gem 'annotate'
+
+gem 'redcarpet'
+gem 'pry-rails'
+gem 'better_errors'
+gem 'binding_of_caller'
