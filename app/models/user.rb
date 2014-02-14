@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   has_many :testimonials
   has_many :received_testimonials, class_name: "Testimonial", foreign_key: "recipient_id"
   has_many :web_links
+  scope :all_not_me, where("email != ?", "kittyserenakat@gmail.com")
 
   def name 
     "#{first_name} #{last_name}"
