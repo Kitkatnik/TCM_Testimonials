@@ -32,6 +32,7 @@ class User < ActiveRecord::Base
   has_many :testimonials
   has_many :received_testimonials, class_name: "Testimonial", foreign_key: "recipient_id"
   has_many :web_links
+  has_many :feedbacks
   scope :all_not_me, where("email != ?", "kittyserenakat@gmail.com")
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "120x120>" }, default_url: "http://placekitten.com/120/120"

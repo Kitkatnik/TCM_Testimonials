@@ -1,12 +1,15 @@
 Testimonials::Application.routes.draw do
-  resources :pages
-
   devise_for :users, controllers: {registrations: "registrations"}
-  root to: "welcome#index"
+
+  resources :feedbacks
   resources :testimonials
   resources :users do 
     resources :web_links
+    resources :feedbacks, only: :new
   end
+  resources :pages
+
+  root to: "welcome#index"
   get "/:slug", to: "pages#show"
 
   # The priority is based upon order of creation: first created -> highest priority.

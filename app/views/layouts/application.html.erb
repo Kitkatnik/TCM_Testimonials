@@ -31,6 +31,9 @@
         <% Page.all.each do |page| %>
           <li><a href="/<%= page.title %>"><%= page.title.titleize %></a></li>
         <% end %>
+        <li>
+          <%= link_to 'Feedback', new_user_feedback_path(current_user), :'data-toggle' => 'modal', :'data-target' => '#feedback' %>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <form class="navbar-form navbar-left" role="search" action="<%= users_path %>" method="get">
@@ -71,6 +74,24 @@
 <% end %>
 
   <%= yield %>
+
+  <div id="feedback" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Leave Feedback</h4>
+        </div>
+        <div class="modal-body">
+          <%= render partial: 'feedbacks/form', locals: { feedback: Feedback.new } %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="save-feedback" type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
 </body>
 </html>

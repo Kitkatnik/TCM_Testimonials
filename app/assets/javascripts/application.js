@@ -23,4 +23,9 @@ $(document).ready(function(){
       flash.fadeOut();
     }, 7000);
   }
+
+  // feedback form submit
+  $('#save-feedback').click(function() {
+    $('#new_feedback').find('[name="commit"]').click();
+  });
 });
