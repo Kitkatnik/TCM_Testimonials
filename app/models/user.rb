@@ -15,6 +15,14 @@
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  first_name             :string(255)
+#  last_name              :string(255)
+#  bio                    :text
+#  admin                  :boolean
+#  avatar_file_name       :string(255)
+#  avatar_content_type    :string(255)
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
 #
 
 class User < ActiveRecord::Base
@@ -25,6 +33,9 @@ class User < ActiveRecord::Base
   has_many :received_testimonials, class_name: "Testimonial", foreign_key: "recipient_id"
   has_many :web_links
   scope :all_not_me, where("email != ?", "kittyserenakat@gmail.com")
+
+  has_attached_file :avatar, styles: { medium: "300x300>", thumb: "120x120>" }, default_url: "http://placekitten.com/120/120"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def name 
     "#{first_name} #{last_name}"
