@@ -4,6 +4,7 @@
     <small>Member of <br /> <%= user.courses.map(&:name).to_sentence %></small><br /><br />
     <small><%= user.received_testimonials.size %> Testimonials Received</small><br />
     <small><%= user.testimonials.size %> Testimonials Written</small><br /><br />
+    <small><% link_to 'Delete', user_path(user), method: :delete if current_user.admin? %></small>
     <button class="btn btn-default btn-block" type="button" data-toggle="modal" data-target="#testyModal<%= user.id %>">Leave A Testimonial</button>
   </p>
   <div class="modal fade" id="testyModal<%= user.id %>">
