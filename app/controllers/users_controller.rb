@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
+  before_action :admin_only, except: [:show, :edit, :update]
+  before_action :self_only, only: [:edit, :update]
   before_action :set_testimonial, only: [:index, :show]
 
   def index
@@ -18,6 +20,7 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @web_link = WebLink.new
+    @users_course = UsersCourse.new
   end
 
   def update

@@ -33,10 +33,19 @@ class User < ActiveRecord::Base
   has_many :received_testimonials, class_name: "Testimonial", foreign_key: "recipient_id"
   has_many :web_links
   has_many :feedbacks
-  scope :all_not_me, where("email != ?", "kittyserenakat@gmail.com")
+  has_many :users_courses
+  has_many :courses, through: :users_courses
+
+  scope :all_not_me, ->(user) { where.not id: user.id }
+  scope :of_courses, ->(course_ids) {
+    joins(:courses).where("courses.id IN (?)", course_ids).uniq
+  }
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "120x120>" }, default_url: "http://placekitten.com/120/120"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
+  attr_accessor :course_code
+  validate :add_course_from_code, on: :create
 
   def name 
     "#{first_name} #{last_name}"
@@ -50,5 +59,13 @@ class User < ActiveRecord::Base
     web_links.where(title: site).first
   end
 
+  private
+
+  def add_course_from_code
+    course = Course.find_by_code course_code
+    errors.add :course, "Code is invalid" and return if course.nil?
+
+    courses << course
+  end
 end
 

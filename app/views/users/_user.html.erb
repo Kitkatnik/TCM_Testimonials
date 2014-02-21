@@ -1,6 +1,7 @@
 <div class="col-lg-3">
   <p class="well text-center">
     <strong><%= link_to user.name, user_path(user) %></strong><br /> 
+    <small>Member of <br /> <%= user.courses.map(&:name).to_sentence %></small><br /><br />
     <small><%= user.received_testimonials.size %> Testimonials Received</small><br />
     <small><%= user.testimonials.size %> Testimonials Written</small><br /><br />
     <button class="btn btn-default btn-block" type="button" data-toggle="modal" data-target="#testyModal<%= user.id %>">Leave A Testimonial</button>

@@ -6,7 +6,10 @@ gem 'rails', '4.0.1'
 gem 'pg', group: :production
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3', group: :development
+group :development do
+  gem 'sqlite3'
+  gem 'pry-rails'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -47,9 +50,7 @@ end
 # gem 'debugger', group: [:development, :test]
 
 gem 'devise'
-
 gem 'annotate'
-
 gem 'redcarpet'
 gem 'pry-rails'
 gem 'better_errors'

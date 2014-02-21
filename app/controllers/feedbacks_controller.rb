@@ -1,4 +1,5 @@
 class FeedbacksController < ApplicationController
+  before_action :admin_only, except: :create
   before_action :set_feedback, only: [:show, :edit, :update, :destroy]
 
   # GET /feedbacks

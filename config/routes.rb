@@ -6,8 +6,10 @@ Testimonials::Application.routes.draw do
   resources :users do 
     resources :web_links
     resources :feedbacks, only: :new
+    resources :users_courses, only: :create
   end
   resources :pages
+  resources :courses
 
   root to: "welcome#index"
   get "/:slug", to: "pages#show"

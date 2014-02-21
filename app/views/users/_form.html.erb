@@ -32,8 +32,16 @@
   </div>
   <div class="field">
     <%= f.label :bio %>
-    <%= f.text_area :bio, class: "form-control", rows: 3 %>
+    <%= f.text_area :bio, class: "form-control", rows: 7 %>
   </div>
+
+  <% if @user.admin? %>
+    <div class="field">
+      <%= f.check_box :admin %>
+      <%= f.label :admin %>
+    </div>
+  <% end %>
+  
   <div class="actions">
     <%= f.submit "Update", class: "btn btn-default" %>
   </div>
@@ -48,4 +56,23 @@
     <%= render partial: "web_links/web_link", locals: {site:site, web_link: get_new_or_existing_web_link(site, @user)} %>
   <% end %>
 
+  <label>Courses</label>  
+  <ul id="courses">
+    <% @user.courses.each do |course| %>
+      <li>
+        <%= course.name %>
+      </li>
+    <% end %>
+  </ul>
+
+  <%= form_tag user_users_courses_path(@user) do %>
+    <div><label>Add Course</label></div>
+    <div class="field col-lg-8">
+      <%= text_field_tag 'course_code', nil, placeholder: 'Course Code', class: 'form-control' %>
+    </div>
+
+    <div class="col-lg-4">
+      <%= submit_tag "Add", class: "btn btn-default" %>
+    </div>
+  <% end %>
 </div>

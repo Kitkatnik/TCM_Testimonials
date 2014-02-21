@@ -32,7 +32,7 @@
           <li><a href="/<%= page.title %>"><%= page.title.titleize %></a></li>
         <% end %>
         <li>
-          <%= link_to 'Feedback', new_user_feedback_path(current_user), :'data-toggle' => 'modal', :'data-target' => '#feedback' %>
+          <%= link_to 'Feedback', new_user_feedback_path(current_user), :'data-toggle' => 'modal', :'data-target' => '#feedback' if user_signed_in? %>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

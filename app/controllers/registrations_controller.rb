@@ -1,4 +1,9 @@
 class RegistrationsController < Devise::RegistrationsController
+  def create
+    super
+    UserMailer.welcome(resource).deliver
+  end
+
   protected
 
   def after_sign_up_path_for(resource)
