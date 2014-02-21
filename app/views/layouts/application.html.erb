@@ -50,7 +50,11 @@
             <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
             <% if current_user.admin? %>
               <li class="divider"></li>
-              <li><%= link_to "Pages", pages_path %></li>
+              <% { "Courses" => courses_path, "Feedback" => feedbacks_path, "Pages" => pages_path, "Testimonials" => testimonials_path, "Users" => users_path }.each_pair do |name, path| %>
+                <li><%= link_to name, path %></li>
+              <% end %>
+
+
             <% end %>
             <li class="divider"></li>
             <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
