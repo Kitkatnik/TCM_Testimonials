@@ -12,6 +12,7 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
     @page = Page.find_by_title(params[:slug])
+    redirect_to root_path, alert: 'Page not found' if @page.nil?
   end
 
   # GET /pages/new
