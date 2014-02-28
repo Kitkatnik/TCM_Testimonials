@@ -18,9 +18,43 @@
       </div><!-- col-lg-12 -->
     </div><!-- col-lg-6 -->
   </div><!-- row -->
+
   <div class="row">
-    <% @users.each do |user| %>
-      <%= render partial: "users/user", locals: { user: user } %>
-    <% end %>
+
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#alphabetical" data-toggle="tab">User's Alphabetical</a></li>
+      <li><a href="#newest" data-toggle="tab">Newest Users</a></li>
+      <li><a href="#top" data-toggle="tab">Top Users (Most Testimonials Given)</a></li>
+      <li><a href="#recommended" data-toggle="tab">Recommended Users</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane active" id="alphabetical">
+        <br />
+        <% @alphabetical.each do |user| %>
+          <%= render partial: "users/user", locals: { user: user } %>
+        <% end %>
+      </div>
+      <div class="tab-pane" id="newest">
+        <br />
+        <% @newest.each do |user| %>
+          <%= render partial: "users/user", locals: { user: user } %>
+        <% end %>
+      </div>
+      <div class="tab-pane" id="top">
+        <br />
+        <% @top.each do |user| %>
+          <%= render partial: "users/user", locals: { user: user } %>
+        <% end %>
+      </div>
+      <div class="tab-pane" id="recommended">
+        <br />
+        <% @recommended.each do |user| %>
+          <%= render partial: "users/user", locals: { user: user } %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div><!-- container -->

@@ -37,15 +37,25 @@ class User < ActiveRecord::Base
   has_many :courses, through: :users_courses
 
   scope :all_not_me, ->(user) { where.not id: user.id }
-  scope :of_courses, ->(course_ids) {
-    joins(:courses).where("courses.id IN (?)", course_ids).uniq
-  }
+  scope :of_courses, ->(course_ids) { joins(:courses).where("courses.id IN (?)", course_ids).uniq }
+  scope :alphabetical, -> { order('users.first_name, users.last_name') }
+  scope :newest, -> { order('users.created_at DESC') }
 
   has_attached_file :avatar, styles: { medium: "300x300>", thumb: "120x120>" }, default_url: "http://placekitten.com/120/120"
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   attr_accessor :course_code
   validate :add_course_from_code, on: :create
+
+  def self.recommended(user_id, base_query)
+    base_query.reject do |user|
+      user.received_testimonials.any? { |t| t.user_id == user_id }
+    end
+  end
+
+  def self.top(base_query)
+    base_query.sort_by { |u| u.testimonials.size }.reverse
+  end
 
   def name 
     "#{first_name} #{last_name}"

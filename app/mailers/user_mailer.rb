@@ -5,4 +5,10 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(to: @user.email, subject: 'Welcome to the TCM Testimonials Site')
   end
+
+  def notification(recipient)
+    @user = recipient
+    mail(to: @user.email, subject: "New Testimonial from #{@user.name}!")
+  end
+
 end
